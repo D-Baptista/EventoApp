@@ -57,12 +57,12 @@ A aplicação está hospedada no **Render**. Graças à containerização com Do
 
 ### Passo a passo
 1. Clone o repositório:
-   ```bash
+   bash
    git clone github.com
 2. Configure as variáveis de ambiente no seu application.properties ou no seu sistema:
-   2.1. SPRING_DATASOURCE_URL
-   2.2. SPRING_DATASOURCE_USERNAME
-   2.3. SPRING_DATASOURCE_PASSWORD
+   1. SPRING_DATASOURCE_URL
+   2. SPRING_DATASOURCE_USERNAME
+   3. SPRING_DATASOURCE_PASSWORD
    
 4. Execute a aplicação via Maven:
    #bash: mvn spring-boot:run
