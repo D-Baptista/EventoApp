@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <title>
+        Detalhes do Evento
+    </title>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="/materialize/css/materialize.min.css" media="screen,projection" />
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link type="text/css" rel="stylesheet" href="/eventoStyles/style.css" />
+
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="nav-wrapper">
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li>
+                        <a href="/eventos" class="waves-effect waves-light btn"><i
+                                class="material-icons left">event_note</i>
+                            Lista de Eventos
+                        </a>
+
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <div>
+
+        <div class="container" style="text-align: center; margin-top: 10px;">
+            <h5>Detalhes do Evento</h5>
+        </div>
+        <div th:each="evt: ${evento}" class="container detalhesEvento">
+
+            <div class="row">
+                <p>Nome:
+                    <span th:text="${evt.nome}">
+                    </span>
+                </p>
+
+                <p>
+                    Local:
+                    <span th:text="${evt.local}">
+                    </span>
+                </p>
+
+                <p>
+                    Data:
+                    <span th:text="${evt.data}">
+                    </span>
+                </p>
+
+                <p>
+                    Horário:
+                    <span th:text="${evt.horario}">
+                    </span>
+                </p>
+
+            </div>
+        </div>
+        <div class="container" style="text-align: center;">
+            <h5>Adicionar novo convidado</h5>
+        </div>
+        <div class="container formConvidado">
+            <form method="post">
+                <th:block th:include="/evento/mensagemValidacao"></th:block>
+                <input type="text" value="" required name="nomeConvidado" placeholder="Nome do Convidado*" />
+                <input type="text" value="" required name="bi" placeholder="B.I.*" />
+                <button class="waves-effect waves-light btn" type="submit"> Adicionar</button>
+                <div>
+                    <p style="color: red;">
+                        Campos com * são obrigatórios
+                    </p>
+                </div>
+            </form>
+        </div>
+        <div class="container" style="text-align: center;">
+            <h5>Convidados adicionados</h5>
+        </div>
+        <table class="container tableConvidado">
+            <thead>
+                <tr>
+                    <th>
+                        Nome do Convidado
+                    </th>
+                    <th>
+                        B.I.
+                    </th>
+
+                    <th>
+                        Apagar
+                    </th>
+                </tr>
+
+            </thead>
+            <tbody>
+                <tr th:each="convidado: ${convidados}">
+                    <td>
+                        <span th:text="${convidado.nomeConvidado}"></span>
+                    </td>
+                    <td>
+                        <span th:text="${convidado.bi}"></span>
+                    </td>
+                    <td>
+                        <a class="waves-effect waves-light btn-small"
+                            th:href="@{/apagarConvidado/{bi}(bi=${convidado.bi})}"><i
+                                class="material-icons left">delete</i>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+
+
+
+    </div>
+    <!--JavaScript at end of body for optimized loading-->
+    <script type="text/javascript" src="/materialize/js/materialize.min.js"></script>
+
+
+</body>
+
+</html>
