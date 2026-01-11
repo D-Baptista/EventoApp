@@ -61,11 +61,14 @@ A aplicação está hospedada no **Render**. Graças à containerização com Do
    git clone github.com
 2. Configure as variáveis de ambiente no seu application.properties ou no seu sistema:
  a. SPRING_DATASOURCE_URL
+
  b. SPRING_DATASOURCE_USERNAME
+ 
  c. SPRING_DATASOURCE_PASSWORD
-3. Execute a aplicação via Maven:
+ 
+4. Execute a aplicação via Maven:
    #bash: mvn spring-boot:run
-4. Acesse no navegador: http://localhost:8080/eventos
+5. Acesse no navegador: http://localhost:8080/eventos
 ## 📄 Licença
 Este projeto está sob a licença MIT.
 
