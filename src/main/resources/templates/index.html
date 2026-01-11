@@ -72,7 +72,8 @@
                 </td>
 
                 <td>
-                    <a th:href="@{/detalheEvento/{nome}(nome=${evento.nome})}">
+                    <a th:href="@{/detalheEvento/{id}(id=${evento.id})}">
+
                         <span th:text="${evento.nome}">
                         </span>
                     </a>
@@ -114,6 +115,7 @@
 
 
 </html>
+
 
 
 
