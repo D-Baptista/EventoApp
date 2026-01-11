@@ -89,35 +89,35 @@ public class EventoController {
         return mv;
     }
 
-    @RequestMapping(value = "/nome/{nome}", method = RequestMethod.GET)
-    public ModelAndView detalheEvento(@PathVariable("nome") String nome) {
-        List<Evento> evento = er.findByNome(nome);
-        ModelAndView mv = new ModelAndView("evento/detalhesEvento");
-        mv.addObject("evento", evento.get(0));
+    @GetMapping("/detalheEvento/{id}")
+    public ModelAndView detalheEvento(@PathVariable("id") long id) {
+        Optional<Evento> evento = er.findById(id);
+        ModelAndView mv = new ModelAndView("/evento/detalhesEvento");
+        mv.addObject("evento", evento.get());
 
-        Iterable<Convidado> convidados = cr.findByEvento(evento.get(0));
+        Iterable<Convidado> convidados = cr.findByEvento(evento.get());
 
         mv.addObject("convidados", convidados);
         return mv;
     }
 
-    @RequestMapping(value = "/nome/{nome}", method = RequestMethod.POST)
-    public String detalheEventoPost(@PathVariable("nome") String nome, @Valid Convidado convidado, BindingResult result,
+    @RequestMapping(value = "/detalheEvento/{id}", method = RequestMethod.POST)
+    public String detalheEventoPost(@PathVariable("id") long id, @Valid Convidado convidado, BindingResult result,
             RedirectAttributes attributes) {
 
         if (result.hasErrors()) {
             attributes.addFlashAttribute("message", "Verifique os campos obrigatórios!");
-            return "redirect:/nome/{nome}";
+            return "redirect:/detalheEvento/{id}";
         }
 
-        List<Evento> evento = er.findByNome(nome);
+        Optional<Evento> evento = er.findById(id);
 
-        convidado.setEvento(evento.get(0));
+        convidado.setEvento(evento.get());
         cr.save(convidado);
 
         attributes.addFlashAttribute("message", "Convidado adicionado com sucesso!");
 
-        return "redirect:/nome/{nome}";
+        return "redirect:/detalheEvento/{id}";
     }
 
     @RequestMapping("/apagarEvento/{id}")
@@ -150,11 +150,10 @@ public class EventoController {
 
         if (!evento.isEmpty()) {
 
-            return "redirect:/nome/" + evento.get().getNome();
+            return "redirect:/detalheEvento/" + evento.get().getId();
         } else {
             return "redirect:/eventos";
         }
     }
 
 }
-
