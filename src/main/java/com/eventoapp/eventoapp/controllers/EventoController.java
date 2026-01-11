@@ -92,7 +92,7 @@ public class EventoController {
     @GetMapping("/detalheEvento/{id}")
     public ModelAndView detalheEvento(@PathVariable("id") long id) {
         Optional<Evento> evento = er.findById(id);
-        ModelAndView mv = new ModelAndView("/evento/detalhesEvento");
+        ModelAndView mv = new ModelAndView("evento/detalhesEvento");
         mv.addObject("evento", evento.get());
 
         Iterable<Convidado> convidados = cr.findByEvento(evento.get());
@@ -157,3 +157,4 @@ public class EventoController {
     }
 
 }
+
