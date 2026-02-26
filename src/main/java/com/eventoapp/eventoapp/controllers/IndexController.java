@@ -21,9 +21,10 @@ public class IndexController {
         mv.addObject("eventos", ev);
         return mv;
     }
-    @GetMapping("/health")
+    @RequestMapping("/health")
 public String health() {
     return "OK";
 }
 }
+
 
