@@ -21,4 +21,9 @@ public class IndexController {
         mv.addObject("eventos", ev);
         return mv;
     }
+    @GetMapping("/health")
+public String health() {
+    return "OK";
 }
+}
+
